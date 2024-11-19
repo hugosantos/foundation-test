@@ -11,7 +11,7 @@ name: Build
 jobs:
   baseline:
     runs-on:
-      - ubuntu-latest
+      - namespace-profile-nocache
   
     steps:
       - name: Checkout code
