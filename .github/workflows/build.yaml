@@ -10,49 +10,35 @@ on:
 name: Build
 jobs:
   baseline:
-    strategy:
-      matrix:
-        go-version: [1.21.x]
     runs-on:
       - ubuntu-latest
+  
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Install Go
         uses: actions/setup-go@v5
-        with:
-          go-version: ${{ matrix.go-version }}
-          cache: false
-
-      - name: Setup runner cache
-        uses: namespacelabs/nscloud-cache-action@v1
-        with:
-          cache: go
 
       - name: Test
         run: go test ./...
 
-  namespace:
-    strategy:
-      matrix:
-        go-version: [1.21.x]
-    runs-on:
-      - namespace-profile-default
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  # namespace:
+  #   runs-on:
+  #     - namespace-profile-default
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
 
-      - name: Install Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: ${{ matrix.go-version }}
-          cache: false
+  #     - name: Install Go
+  #       uses: actions/setup-go@v5
+  #       with:
+  #         cache: false
 
-      - name: Setup runner cache
-        uses: namespacelabs/nscloud-cache-action@v1
-        with:
-          cache: go
+  #     - name: Setup runner cache
+  #       uses: namespacelabs/nscloud-cache-action@v1
+  #       with:
+  #         cache: go
 
-      - name: Test
-        run: go test ./...
+  #     - name: Test
+  #       run: go test ./...
