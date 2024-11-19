@@ -23,22 +23,22 @@ jobs:
       - name: Test
         run: go test ./...
 
-  # namespace:
-  #   runs-on:
-  #     - namespace-profile-default
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
+  namespace:
+    runs-on:
+      - namespace-profile-cache-test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  #     - name: Install Go
-  #       uses: actions/setup-go@v5
-  #       with:
-  #         cache: false
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          cache: false
 
-  #     - name: Setup runner cache
-  #       uses: namespacelabs/nscloud-cache-action@v1
-  #       with:
-  #         cache: go
+      - name: Setup runner cache
+        uses: namespacelabs/nscloud-cache-action@v1
+        with:
+          cache: go
 
-  #     - name: Test
-  #       run: go test ./...
+      - name: Test
+        run: go test ./...
